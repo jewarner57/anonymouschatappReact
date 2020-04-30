@@ -1,0 +1,248 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 5vmin;
+  pointer-events: none;
+  padding-left: 30px;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #1e2127;
+}
+
+.App-title {
+  color: white;
+  text-align: left;
+  padding-left: 20px;
+  font-size: 2vmin;
+}
+
+.page-body {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/*Chatroom */
+.chatbox-body {
+  width: 70vw;
+  min-height: 70vh;
+  padding: 0px;
+  background-color: #1e2127;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-title-containter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.message-list-container {
+  width: 90%;
+  max-height: 40vh;
+  min-height: 40vh;
+  border: 2px solid #282c34;
+
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  overflow-y: auto;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.messageBox {
+  width: 100%;
+  height: 30px;
+  outline: none;
+  resize: none;
+  background-color: white;
+  border: 3px solid #282c34;
+  font-size: 15px;
+}
+
+.text-form-container {
+  width: 55vw;
+  height: 20%;
+  margin: 20px;
+}
+
+.message {
+  border-radius: 10px;
+  word-wrap: break-word;
+  padding: 10px 20px 10px 20px;
+  margin: 10px 20px;
+}
+
+.outgoingMessage {
+  background-color: purple;
+}
+
+.incomingMessage {
+  background-color: gray;
+}
+
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.outgoingContainer {
+  margin-left: auto;
+}
+
+.username {
+  font-size: 15px;
+  word-wrap: break-word;
+  margin-bottom: 0px;
+  padding: 0px 20px;
+}
+
+.incomingUsername {
+  text-align: left;
+}
+
+.outgoingUsername {
+  text-align: right;
+}
+
+/*Button Component*/
+.Button {
+  width: 300px;
+  background-color: rgb(0, 128, 128);
+  color: white;
+  text-decoration: none;
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  border: none;
+}
+
+.Button:hover {
+  background-color: purple;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/*ToggleSwitch Component*/
+
+.toggleSwitchContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.toggleSwitchTitle {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 5px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: purple;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px purple;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*inputs*/
+input {
+  font-size: 20px;
+  margin: 20px;
+}
+
+.formErrors {
+  font-size: 20px;
+  color: rgb(245, 62, 62);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
