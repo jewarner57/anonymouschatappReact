@@ -12,6 +12,7 @@ class JoinRoom extends React.Component {
       id: '',
       pass: '',
       roomID: '',
+      roomAddress: '',
       joinError: '',
     };
     this.handleClick = this.handleClick.bind(this);
@@ -21,11 +22,17 @@ class JoinRoom extends React.Component {
   componentDidMount() {
     this.props.socket.on('validateJoin', (joinObj) => {
       if (joinObj.willJoin !== false) {
-        this.setState({ roomID: joinObj.id }, () => {
-          this.setState({ activePage: 'chatroom' }, () => {
-            this.props.socket.emit('getRoomPopulation', this.state.roomID);
-          });
-        });
+        this.setState(
+          { roomID: joinObj.id, roomAddress: joinObj.roomAddress },
+          () => {
+            this.setState({ activePage: 'chatroom' }, () => {
+              this.props.socket.emit('getRoomPopulation', {
+                roomAddress: this.state.roomAddress,
+                roomID: this.state.roomID,
+              });
+            });
+          }
+        );
       } else {
         this.setState({ joinError: joinObj.status });
       }
@@ -87,7 +94,8 @@ class JoinRoom extends React.Component {
             title={this.state.roomID}
             onSend={'sendPrivateMessage'}
             roomID={this.state.roomID}
-            onRecieve={'recieve' + this.state.roomID}
+            roomAddress={this.state.roomAddress}
+            onRecieve={'recieve' + this.state.roomAddress}
             myUsername={this.props.myUsername}
           ></Chatroom>
         ) : null}

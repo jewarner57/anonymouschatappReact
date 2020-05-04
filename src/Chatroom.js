@@ -7,6 +7,7 @@ class Chatroom extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      messageValue: '',
       messageList: [],
       users: 0,
       maxUsers: '-',
@@ -18,21 +19,23 @@ class Chatroom extends React.Component {
   }
 
   sendMessage() {
-    this.props.socket.emit(this.props.onSend, {
-      roomID: this.props.roomID,
-      body: this.state.messageValue,
-      username: this.state.myUsername,
-    });
+    if (this.state.messageValue.trim() !== '') {
+      this.props.socket.emit(this.props.onSend, {
+        roomAddress: this.props.roomAddress,
+        body: this.state.messageValue,
+        username: this.state.myUsername,
+      });
 
-    let recievedMessageList = this.state.messageList;
+      let recievedMessageList = this.state.messageList;
 
-    recievedMessageList.push({
-      message: this.state.messageValue,
-      type: 'outgoing',
-      username: this.state.myUsername,
-    });
+      recievedMessageList.push({
+        message: this.state.messageValue,
+        type: 'outgoing',
+        username: this.state.myUsername,
+      });
 
-    this.setState({ messageList: recievedMessageList, messageValue: '' });
+      this.setState({ messageList: recievedMessageList, messageValue: '' });
+    }
   }
 
   componentDidMount() {
@@ -52,7 +55,10 @@ class Chatroom extends React.Component {
     });
 
     this.props.socket.on('updateRoomPopulation', () => {
-      this.props.socket.emit('getRoomPopulation', this.props.roomID);
+      this.props.socket.emit('getRoomPopulation', {
+        roomAddress: this.props.roomAddress,
+        roomID: this.props.roomID,
+      });
     });
   }
 

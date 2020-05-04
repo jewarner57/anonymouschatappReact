@@ -6,7 +6,13 @@ import Chatroom from './Chatroom';
 class CreateRoom extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { props, activePage: 'enterSettings', pass: '', mau: '10' };
+    this.state = {
+      props,
+      activePage: 'enterSettings',
+      pass: '',
+      mau: '10',
+      roomAddress: '',
+    };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -26,12 +32,18 @@ class CreateRoom extends React.Component {
   }
 
   componentDidMount() {
-    this.props.socket.on('recieveChatroomCode', (code) => {
-      this.setState({ roomID: code }, () => {
-        this.setState({ activePage: 'chatroom' }, () => {
-          this.props.socket.emit('getRoomPopulation', this.state.roomID);
-        });
-      });
+    this.props.socket.on('recieveChatroomCode', (connectInfo) => {
+      this.setState(
+        { roomID: connectInfo.id, roomAddress: connectInfo.roomAddress },
+        () => {
+          this.setState({ activePage: 'chatroom' }, () => {
+            this.props.socket.emit('getRoomPopulation', {
+              roomAddress: this.state.roomAddress,
+              roomID: this.state.roomID,
+            });
+          });
+        }
+      );
     });
   }
 
@@ -78,7 +90,8 @@ class CreateRoom extends React.Component {
             title={this.state.roomID}
             onSend={'sendPrivateMessage'}
             roomID={this.state.roomID}
-            onRecieve={'recieve' + this.state.roomID}
+            roomAddress={this.state.roomAddress}
+            onRecieve={'recieve' + this.state.roomAddress}
             myUsername={this.props.myUsername}
           ></Chatroom>
         ) : null}

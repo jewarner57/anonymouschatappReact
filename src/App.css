@@ -45,6 +45,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 10px;
 }
 
 .chat-title-containter {
@@ -56,15 +57,15 @@
 }
 
 .message-list-container {
+  max-width: 100%;
   width: 90%;
   max-height: 40vh;
   min-height: 40vh;
   border: 2px solid #282c34;
-
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .message-list {
@@ -105,6 +106,7 @@
 }
 
 .messageContainer {
+  max-width: 60%;
   display: flex;
   flex-direction: column;
   width: fit-content;

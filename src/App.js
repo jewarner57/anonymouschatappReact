@@ -19,7 +19,6 @@ class App extends React.Component {
     this.state = {
       activePage: 'welcome',
       response: 0,
-      endpoint: 'http://localhost:5000/',
       socket: socket,
       myUsername: uniqueNamesGenerator({
         dictionaries: [adjectives, colors, animals],
@@ -58,6 +57,7 @@ class App extends React.Component {
                 title='Global Chat'
                 onSend='sendGlobalMessage'
                 onRecieve='receiveGlobalMessage'
+                roomAddress='global'
                 roomID='global'
                 myUsername={this.state.myUsername}
               ></Chatroom>
