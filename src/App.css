@@ -59,13 +59,18 @@
 .message-list-container {
   max-width: 100%;
   width: 90%;
-  max-height: 40vh;
-  min-height: 40vh;
+  height: 40vh;
   border: 2px solid #282c34;
   display: flex;
   flex-direction: column-reverse;
   align-items: flex-start;
   overflow-y: scroll;
+}
+
+@-moz-document url-prefix() {
+  .message-list-container {
+    flex-direction: column;
+  }
 }
 
 .message-list {

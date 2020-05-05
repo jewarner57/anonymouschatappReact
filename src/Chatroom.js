@@ -97,7 +97,7 @@ class Chatroom extends React.Component {
             Users in chat: ({this.state.users}/{this.state.maxUsers})
           </p>
         </div>
-        <div className='message-list-container'>
+        <div className='message-list-container' id='message-list-container'>
           <div className='message-list'>
             {this.state.messageList.map((value, index) => {
               return (
